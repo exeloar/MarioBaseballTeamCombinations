@@ -1,6 +1,8 @@
 #include "gamedata.h"
 
 std::unordered_map<char, std::string> characters = {
+
+// Captains
         {0, "Mario"},
         {1, "Luigi"},
         {2, "DK"},
@@ -8,65 +10,85 @@ std::unordered_map<char, std::string> characters = {
         {4, "Peach"},
         {5, "Daisy"},
         {6, "Yoshi"},
-        {7, "Baby Mario"},
-        {8, "Baby Luigi"},
-        {9, "Bowser"},
-        {10, "Wario"},
-        {11, "Waluigi"},
+        {7, "Birdo"},
+        {8, "Wario"},
+        {9, "Waluigi"},
+        {10, "Bowser"},
+        {11, "Bowser Jr"},
+        
+// Duplicate Sets
         {12, "Koopa(G)"},
         {13, "Koopa(R)"},
+
         {14, "Toad(R)"},
         {15, "Toad(B)"},
         {16, "Toad(Y)"},
         {17, "Toad(G)"},
         {18, "Toad(P)"},
-        {19, "Boo"},
-        {20, "Toadette"},
-        {21, "Shy Guy(R)"},
-        {22, "Shy Guy(B)"},
-        {23, "Shy Guy(Y)"},
-        {24, "Shy Guy(G)"},
-        {25, "Shy Guy(Bk)"},
-        {26, "Birdo"},
-        {27, "Monty"},
-        {28, "Bowser Jr"},
-        {29, "Paratroopa(R)"},
-        {30, "Paratroopa(G)"},
-        {31, "Pianta(B)"},
-        {32, "Pianta(R)"},
-        {33, "Pianta(Y)"},
-        {34, "Noki(B)"},
-        {35, "Noki(R)"},
-        {36, "Noki(G)"},
-        {37, "Hammer Bro"},
-        {38, "Boomerang Bro"},
-        {39, "Fire Bro"},
-        {40, "Toadsworth"},
-        {41, "Magikoopa(B)"},
-        {42, "Magikoopa(R)"},
-        {43, "Magikoopa(G)"},
-        {44, "Magikoopa(Y)"},
-        {45, "King Boo"},
-        {46, "Petey"},
-        {47, "Dixie"},
-        {48, "Goomba"},
-        {49, "Paragoomba"},
-        {50, "Dry Bones(Gy)"},
-        {51, "Dry Bones(G)"},
-        {52, "Dry Bones(B)"},
-        {53, "Dry Bones(R)"}
-};
+        
+        {19, "Shy Guy(R)"},
+        {20, "Shy Guy(B)"},
+        {21, "Shy Guy(Y)"},
+        {22, "Shy Guy(G)"},
+        {23, "Shy Guy(Bk)"},
+        
+        {24, "Paratroopa(R)"},
+        {25, "Paratroopa(G)"},
+        
+        {26, "Pianta(B)"},
+        {27, "Pianta(R)"},
+        {28, "Pianta(Y)"},
+        
+        {29, "Noki(B)"},
+        {30, "Noki(R)"},
+        {31, "Noki(G)"},
+        
+        {32, "Hammer Bro"},
+        {33, "Boomerang Bro"},
+        {34, "Fire Bro"},
+        
+        {35, "Magikoopa(B)"},
+        {36, "Magikoopa(R)"},
+        {37, "Magikoopa(G)"},
+        {38, "Magikoopa(Y)"},
+        
+        {39, "Dry Bones(Gy)"},
+        {40, "Dry Bones(G)"},
+        {41, "Dry Bones(B)"},
+        {42, "Dry Bones(R)"},
 
-std::unordered_set<char> captains = {0,1,2,3,4,5,6,9,10,11,17,19};
+// Normal Characters
+        {43, "Toadsworth"},
+        {44, "King Boo"},
+        {45, "Petey"},
+        {46, "Dixie"},
+        {47, "Goomba"},
+        {48, "Paragoomba"},
+        {49, "Baby Mario"},
+        {50, "Baby Luigi"},
+        {51, "Boo"},
+        {52, "Toadette"},
+        {53, "Monty"}, // saving the best for last
+};
 
 std::vector<std::unordered_set<char>> duplicates = {
         {12,13},
         {14,15,16,17,18},
-        {21,22,23,24,25},
-        {29,30},
-        {31,32,33},
-        {34,35,36},
-        {37,38,39},
-        {41,42,43,44},
-        {50,51,52,53}
+        {19,20,21,22,23},
+        {24,25},
+        {26,27,28},
+        {29,30,31},
+        {32,33,34},
+        {35,36,37,38},
+        {39,40,41,42}
 };
+
+unsigned getOffset(char dupe){
+        if(dupe < 12 || dupe >= 43){ return 1; }
+
+        const char setStarts[] = {14,19,24,26,29,32,35,39};
+        for(char c : setStarts){
+                if(dupe < c){ return c - dupe; }
+        }
+        return 43 - dupe;
+}

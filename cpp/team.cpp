@@ -6,14 +6,14 @@
 Team::Team(char roster[9]){
     memcpy(team,roster,9);
     for(char character : team){
-        if(captains.count(character) != 0){
+        if(character <= CAPTAIN_CUTOFF){
             eligibleCaptains.push_back(character);
         }
     }
 }
 
 bool Team::hasCaptain() const{
-    return eligibleCaptains.size() != 0;
+    return !eligibleCaptains.empty();
 }
 
 bool Team::hasNoDuplicates() const{
