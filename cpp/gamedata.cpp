@@ -83,6 +83,18 @@ std::vector<std::unordered_set<char>> duplicates = {
         {39,40,41,42}
 };
 
+std::unordered_map<char, unsigned> numDupesPerNoDupeIndex = {
+        {12, 2},
+        {13, 5},
+        {14, 5},
+        {15, 2},
+        {16, 3},
+        {17, 3},
+        {18, 3},
+        {19, 4},
+        {20, 4}
+};
+
 unsigned getOffset(char dupe){
         if(dupe < 12 || dupe >= 43){ return 1; }
 
