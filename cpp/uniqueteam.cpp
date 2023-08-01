@@ -22,21 +22,21 @@ void initialize(){
 
     // No more picks
     for(uint_8 i = 0 ; i < NUM_PLAYERS_PER_ROSTER; i++){
-        dp[8][i] = 0; //impossible
+        dp[NUM_PLAYERS_PER_ROSTER - 1][i] = 0; //impossible
     }
     for(uint_8 i = NUM_PLAYERS_PER_ROSTER; i < NUM_NON_DUPE_CHARACTERS; i++){
-        dp[8][i] = 1; //this is a single team w/ the roster we have
+        dp[NUM_PLAYERS_PER_ROSTER - 1][i] = 1; //this is a single team w/ the roster we have
     }
 
     // Last pick
     for(uint_8 i = 0 ; i < 8; i++){
-        dp[7][i] = 0; //impossible
+        dp[NUM_PLAYERS_PER_ROSTER - 2][i] = 0; //impossible
     }
     for(uint_8 i = DUPLICATE_CUTOFF_UNCOUNTED+1; i < NUM_NON_DUPE_CHARACTERS; i++){
-        dp[7][i] = NUM_NON_DUPE_CHARACTERS-i; //# players left = # possible teams
+        dp[NUM_PLAYERS_PER_ROSTER - 2][i] = NUM_NON_DUPE_CHARACTERS-i; //# players left = # possible teams
     }
     for(uint_8 i = DUPLICATE_CUTOFF_UNCOUNTED; i > CAPTAIN_CUTOFF; i--){
-        dp[7][i] = numDupesPerNoDupeIndex[i] + solve(7, i+1); //# duplicates of this player + # of picks possible later
+        dp[NUM_PLAYERS_PER_ROSTER - 2][i] = numDupesPerNoDupeIndex[i] + solve(NUM_PLAYERS_PER_ROSTER - 2, i+1); //# duplicates of this player + # of picks possible later
     }
 
     // No more captains
